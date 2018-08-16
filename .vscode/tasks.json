@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "label": "build",
+            "command": "tsc -p ./tsconfig.json",
+            "type": "shell",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        }
+    ]
+}

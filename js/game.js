@@ -6,6 +6,8 @@ define(["require", "exports", "./background"], function (require, exports, backg
             this._scene = scene;
             this._cursors = this._scene.input.keyboard.createCursorKeys();
             this._background = new background_1.default(this._scene, 4); // TODO: hardcoded velocity
+            // testing
+            this._scene.add.sprite(100, 100, 'dragon').play('moveCharacter', true, 0);
         }
         Game.prototype.update = function () {
             var self = this;

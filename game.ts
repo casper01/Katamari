@@ -1,17 +1,17 @@
-import Background from './background'
+import Background from './background';
+import Player from './player';
 
 class Game {
     _scene: Phaser.Scene
     _cursors: any;
     _background: Background;
+    player: Player;
 
     constructor(scene: Phaser.Scene) {
         this._scene = scene;
         this._cursors = this._scene.input.keyboard.createCursorKeys();
         this._background = new Background(this._scene, 4); // TODO: hardcoded velocity
-        
-        // testing
-        this._scene.add.sprite(100, 100, 'dragon').play('moveCharacter', true, 0);
+        this.player = new Player(this._scene);
     }
 
     update() : void {

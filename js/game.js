@@ -1,4 +1,4 @@
-define(["require", "exports", "./background"], function (require, exports, background_1) {
+define(["require", "exports", "./background", "./player"], function (require, exports, background_1, player_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Game = /** @class */ (function () {
@@ -6,8 +6,7 @@ define(["require", "exports", "./background"], function (require, exports, backg
             this._scene = scene;
             this._cursors = this._scene.input.keyboard.createCursorKeys();
             this._background = new background_1.default(this._scene, 4); // TODO: hardcoded velocity
-            // testing
-            this._scene.add.sprite(100, 100, 'dragon').play('moveCharacter', true, 0);
+            this.player = new player_1.default(this._scene);
         }
         Game.prototype.update = function () {
             var self = this;

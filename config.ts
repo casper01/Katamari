@@ -21,7 +21,7 @@ require([], () => {
     function preload(this: Phaser.Scene) {
         this.load.image('sky', 'assets/sky.jpg');
         this.load.image('grass', 'assets/grass2.png');  // TODO: export to resources
-        this.load.spritesheet('dragon', 'assets/bird_sprite.png', { 
+        this.load.spritesheet('player', 'assets/bird_sprite.png', { 
             frameWidth: 97, 
             frameHeight: 65
         });
@@ -29,8 +29,8 @@ require([], () => {
 
     function create(this: Phaser.Scene) {
         this.anims.create({
-            key: 'moveCharacter',
-            frames: this.anims.generateFrameNumbers('dragon', { start: 0, end: 8 }),
+            key: 'playerFly',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
             frameRate: 10,
             repeat: -1
         });

@@ -12,6 +12,9 @@ define(["require", "exports", "./game"], function (require, exports, game_1) {
                 preload: preload,
                 create: create,
                 update: update,
+            },
+            physics: {
+                default: 'arcade'
             }
         };
         new Phaser.Game(config);

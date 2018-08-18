@@ -13,6 +13,9 @@ require([], () => {
             preload: preload,
             create: create,
             update: update,
+        },
+        physics: {
+            default: 'arcade'
         }
     };
     new Phaser.Game(config);

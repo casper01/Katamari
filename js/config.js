@@ -26,6 +26,10 @@ define(["require", "exports", "./game"], function (require, exports, game_1) {
                 frameWidth: 97,
                 frameHeight: 65
             });
+            this.load.spritesheet('boom', 'assets/boom.png', {
+                frameWidth: 64,
+                frameHeight: 64
+            });
         }
         function create() {
             this.anims.create({
@@ -33,6 +37,12 @@ define(["require", "exports", "./game"], function (require, exports, game_1) {
                 frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
                 frameRate: 10,
                 repeat: -1
+            });
+            this.anims.create({
+                key: 'birdDestroy',
+                frames: this.anims.generateFrameNumbers('boom', { start: 0, end: 24 }),
+                frameRate: 50,
+                hideOnComplete: true
             });
             game = new game_1.default(this);
         }

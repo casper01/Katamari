@@ -1,5 +1,6 @@
 import Background from './background';
 import Player from './player';
+import Enemy from './enemy';
 
 class Game {
     _scene: Phaser.Scene
@@ -13,6 +14,17 @@ class Game {
         this._scene.physics.world.setBounds(150, 100, 500, 400);
         this._background = new Background(this._scene, 4); // TODO: hardcoded velocity
         this.player = new Player(this._scene);
+
+        // new stuff
+        let enemy = new Enemy(this._scene);
+
+        this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.hit, null, this);
+    }
+
+    hit(player: Phaser.Physics.Arcade.Sprite, enemy: Phaser.Physics.Arcade.Sprite) : void {
+        enemy.disableBody(true, true);
+        let boom = this._scene.add.sprite(enemy.x, enemy.y, 'boom');
+        boom.play('birdDestroy', true, 0);
     }
 
     update() : void {

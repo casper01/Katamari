@@ -1,13 +1,18 @@
+import settings from "./settings";
+
 class Player {
     _scene : Phaser.Scene;
     _sprite: Phaser.Physics.Arcade.Sprite;
+    _size: number;
     v = 200;
 
     constructor(scene: Phaser.Scene) {
+        this._size = 1;
         this._scene = scene;
         this._sprite = this._scene.physics.add.sprite(400, 300, 'player'); // TODO: hardcoded
         this._sprite.play('playerFly', true, 0);
         this._sprite.setCollideWorldBounds(true);
+        this._sprite.setScale(this._size, this._size);
     }
 
     moveLeft() : void {
@@ -34,6 +39,15 @@ class Player {
 
     getSprite() : Phaser.Physics.Arcade.Sprite {
         return this._sprite;
+    }
+
+    getSize() : number {
+        return this._size;
+    }
+
+    grow() : void {
+        this._size += settings.playerGrowStep;
+        this._sprite.setScale(this._size, this._size);
     }
 }
 

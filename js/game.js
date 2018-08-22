@@ -18,7 +18,11 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             var v = this.getRandomVelocity(pos.x, pos.y);
             var size = Math.random() * (settings_1.default.maxSize - settings_1.default.minSize) + settings_1.default.minSize;
             var enemy = new enemy_1.default(this._scene, pos, v, size);
-            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.hit, null, this);
+            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, null, {
+                game: this,
+                player: this.player,
+                enemy: enemy
+            });
             this.enemies.push(enemy);
         };
         Game.prototype.getRandomVelocity = function (x, y) {
@@ -85,10 +89,22 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 y: y
             };
         };
-        Game.prototype.hit = function (player, enemy) {
-            enemy.disableBody(true, true);
-            var boom = this._scene.add.sprite(enemy.x, enemy.y, 'boom');
-            boom.play('birdDestroy', true, 0);
+        Game.prototype.playerHitEnemy = function (player, enemy) {
+            var e = this.enemy;
+            var p = this.player;
+            var game = this.game;
+            if (p.getSize() > e.getSize()) {
+                p.grow();
+                e.getSprite().disableBody(true, true);
+                var boom = game._scene.add.sprite(e.getSprite().x, e.getSprite().y, 'boom');
+                boom.play('birdDestroy', true, 0);
+            }
+            else {
+                // TODO: player should lose life 
+                p.getSprite().disableBody(true, true);
+                var boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
+                boom.play('birdDestroy', true, 0);
+            }
         };
         Game.prototype.update = function () {
             var self = this;

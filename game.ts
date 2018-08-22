@@ -29,7 +29,11 @@ class Game {
         let v = this.getRandomVelocity(pos.x, pos.y);
         let size = Math.random() * (settings.maxSize - settings.minSize) + settings.minSize;
         let enemy = new Enemy(this._scene, pos, v, size);
-        this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.hit, null, this);
+        this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, null, {
+            game: this,
+            player: this.player,
+            enemy: enemy
+        });
         this.enemies.push(enemy);
     }
 
@@ -99,10 +103,23 @@ class Game {
         };
     }
 
-    hit(player: Phaser.Physics.Arcade.Sprite, enemy: Phaser.Physics.Arcade.Sprite) : void {
-        enemy.disableBody(true, true);
-        let boom = this._scene.add.sprite(enemy.x, enemy.y, 'boom');
-        boom.play('birdDestroy', true, 0);
+    playerHitEnemy(this: any, player: Phaser.Physics.Arcade.Sprite, enemy: Phaser.Physics.Arcade.Sprite) : void {
+        let e = <Enemy>this.enemy;
+        let p = <Player>this.player;
+        let game = <Game>this.game;
+
+        if (p.getSize() > e.getSize()) {
+            p.grow();
+            e.getSprite().disableBody(true, true);
+            let boom = game._scene.add.sprite(e.getSprite().x, e.getSprite().y, 'boom');
+            boom.play('birdDestroy', true, 0);
+        }
+        else {
+            // TODO: player should lose life 
+            p.getSprite().disableBody(true, true);
+            let boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
+            boom.play('birdDestroy', true, 0);
+        }
     }
 
     update() : void {

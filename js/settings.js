@@ -2,8 +2,6 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var settings = {
-        width: 800,
-        height: 600,
         minV: 10,
         maxV: 200,
         minSize: 0.25,
@@ -12,7 +10,16 @@ define(["require", "exports"], function (require, exports) {
             startX: 400,
             startY: 300,
             growStep: 0.5,
-            velocity: 200
+            velocity: 200,
+            bgVelocity: 4
+        },
+        world: {
+            marginL: 150,
+            marginR: 150,
+            marginT: 100,
+            marginB: 100,
+            width: 800,
+            height: 600
         },
         imgs: {
             sky: {

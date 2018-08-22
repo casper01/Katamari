@@ -9,21 +9,27 @@ class Game {
     _background: Background;
     player: Player;
     enemies: Enemy[];
+    boundingRect = {
+        l: settings.world.marginL,
+        t: settings.world.marginT,
+        w: settings.world.width - settings.world.marginL - settings.world.marginR,
+        h: settings.world.height - settings.world.marginT - settings.world.marginB
+    };
 
     constructor(scene: Phaser.Scene) {
         this._scene = scene;
         this._cursors = this._scene.input.keyboard.createCursorKeys();
-        this._scene.physics.world.setBounds(150, 100, 500, 400);
-        this._background = new Background(this._scene, settings.player.velocity);
+        this._scene.physics.world.setBounds(this.boundingRect.l, this.boundingRect.t, this.boundingRect.w, this.boundingRect.h);
+        this._background = new Background(this._scene, settings.player.bgVelocity);
         this.player = new Player(this._scene);
         this.enemies = [];
 
-        for(let i = 0; i < 10; i++) {
-            this.addEnemy();
-        }
+        // for(let i = 0; i < 10; i++) {
+        //     this.addEnemy();
+        // }
 
     }
-    
+
     addEnemy() {
         let pos = this.getRandomSidePos();
         let v = this.getRandomVelocity(pos.x, pos.y);
@@ -49,12 +55,12 @@ class Game {
             vx = sign * _.random(settings.minV, settings.maxV);
             vy = _.random(settings.minV, settings.maxV);
         }
-        else if (x == settings.width) {
+        else if (x == settings.world.width) {
             sign = Math.random() < 0.5 ? -1 : 1;
             vx = -_.random(settings.minV, settings.maxV);
             vy = sign * _.random(settings.minV, settings.maxV);
         }
-        else if (y == settings.height) {
+        else if (y == settings.world.height) {
             sign = Math.random() < 0.5 ? -1 : 1;
             vy = -_.random(settings.minV, settings.maxV);
             vx = sign * _.random(settings.minV, settings.maxV);
@@ -74,27 +80,22 @@ class Game {
     getRandomSidePos() : any {
         let side = _.random(3);
         let x, y;
-        console.log("side: ", side);
         switch(side) {
         case 0:
             x = 0;
-            y = _.random(settings.height);
-            console.log("x: ", x, " y: ", y);
+            y = _.random(settings.world.height);
             break;
         case 1:
-            x = settings.width;
-            y = _.random(settings.height);
-            console.log("x: ", x, " y: ", y);
+            x = settings.world.width;
+            y = _.random(settings.world.height);
             break;
         case 2:
             y = 0;
-            x = _.random(settings.width);
-            console.log("x: ", x, " y: ", y);
+            x = _.random(settings.world.width);
             break;
         case 3:
-            y = settings.height;
-            x = _.random(settings.width);
-            console.log("x: ", x, " y: ", y);
+            y = settings.world.height;
+            x = _.random(settings.world.width);
             break;
         }
         return {
@@ -126,20 +127,28 @@ class Game {
         this.player.update();
 
         if (this._cursors.left.isDown) {
-            this._background.moveLeft();
             this.player.moveLeft();
+            if (this.player._sprite.body.left == this.boundingRect.l) {
+                this._background.moveLeft();
+            }
         }
         if (this._cursors.right.isDown) {
-            this._background.moveRight();
             this.player.moveRight();
+            if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
+                this._background.moveRight();
+            }
         }
         if (this._cursors.up.isDown) {
-            this._background.moveUp();
             this.player.moveUp();
+            if (this.player._sprite.body.top == this.boundingRect.t) {
+                this._background.moveUp();
+            }
         }
         if (this._cursors.down.isDown) {
-            this._background.moveDown();
             this.player.moveDown();
+            if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
+                this._background.moveDown();
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ class Background {
     constructor(scene: any, moving_velocity: number) {
         this._moving_v = moving_velocity;
         this._scene = scene;
-        this._sprite = this._scene.add.tileSprite(settings.width/2, settings.height/2, 
-            settings.width, settings.height, settings.imgs.grass.key);
+        this._sprite = this._scene.add.tileSprite(settings.world.width/2, settings.world.height/2, 
+            settings.world.width, settings.world.height, settings.imgs.grass.key);
     }
 
     moveLeft() : void {

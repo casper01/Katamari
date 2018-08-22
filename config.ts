@@ -8,8 +8,8 @@ import settings from './settings';
 require([], () => {
     let config = {
         type: Phaser.AUTO,
-        width: settings.width,
-        height: settings.height,
+        width: settings.world.width,
+        height: settings.world.height,
         scene: {
             preload: preload,
             create: create,

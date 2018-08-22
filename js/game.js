@@ -3,15 +3,21 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
     Object.defineProperty(exports, "__esModule", { value: true });
     var Game = /** @class */ (function () {
         function Game(scene) {
+            this.boundingRect = {
+                l: settings_1.default.world.marginL,
+                t: settings_1.default.world.marginT,
+                w: settings_1.default.world.width - settings_1.default.world.marginL - settings_1.default.world.marginR,
+                h: settings_1.default.world.height - settings_1.default.world.marginT - settings_1.default.world.marginB
+            };
             this._scene = scene;
             this._cursors = this._scene.input.keyboard.createCursorKeys();
-            this._scene.physics.world.setBounds(150, 100, 500, 400);
-            this._background = new background_1.default(this._scene, settings_1.default.player.velocity);
+            this._scene.physics.world.setBounds(this.boundingRect.l, this.boundingRect.t, this.boundingRect.w, this.boundingRect.h);
+            this._background = new background_1.default(this._scene, settings_1.default.player.bgVelocity);
             this.player = new player_1.default(this._scene);
             this.enemies = [];
-            for (var i = 0; i < 10; i++) {
-                this.addEnemy();
-            }
+            // for(let i = 0; i < 10; i++) {
+            //     this.addEnemy();
+            // }
         }
         Game.prototype.addEnemy = function () {
             var pos = this.getRandomSidePos();
@@ -37,12 +43,12 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 vx = sign * _.random(settings_1.default.minV, settings_1.default.maxV);
                 vy = _.random(settings_1.default.minV, settings_1.default.maxV);
             }
-            else if (x == settings_1.default.width) {
+            else if (x == settings_1.default.world.width) {
                 sign = Math.random() < 0.5 ? -1 : 1;
                 vx = -_.random(settings_1.default.minV, settings_1.default.maxV);
                 vy = sign * _.random(settings_1.default.minV, settings_1.default.maxV);
             }
-            else if (y == settings_1.default.height) {
+            else if (y == settings_1.default.world.height) {
                 sign = Math.random() < 0.5 ? -1 : 1;
                 vy = -_.random(settings_1.default.minV, settings_1.default.maxV);
                 vx = sign * _.random(settings_1.default.minV, settings_1.default.maxV);
@@ -61,27 +67,22 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
         Game.prototype.getRandomSidePos = function () {
             var side = _.random(3);
             var x, y;
-            console.log("side: ", side);
             switch (side) {
                 case 0:
                     x = 0;
-                    y = _.random(settings_1.default.height);
-                    console.log("x: ", x, " y: ", y);
+                    y = _.random(settings_1.default.world.height);
                     break;
                 case 1:
-                    x = settings_1.default.width;
-                    y = _.random(settings_1.default.height);
-                    console.log("x: ", x, " y: ", y);
+                    x = settings_1.default.world.width;
+                    y = _.random(settings_1.default.world.height);
                     break;
                 case 2:
                     y = 0;
-                    x = _.random(settings_1.default.width);
-                    console.log("x: ", x, " y: ", y);
+                    x = _.random(settings_1.default.world.width);
                     break;
                 case 3:
-                    y = settings_1.default.height;
-                    x = _.random(settings_1.default.width);
-                    console.log("x: ", x, " y: ", y);
+                    y = settings_1.default.world.height;
+                    x = _.random(settings_1.default.world.width);
                     break;
             }
             return {
@@ -107,23 +108,30 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
         };
         Game.prototype.update = function () {
-            var self = this;
             this.player.update();
             if (this._cursors.left.isDown) {
-                this._background.moveLeft();
                 this.player.moveLeft();
+                if (this.player._sprite.body.left == this.boundingRect.l) {
+                    this._background.moveLeft();
+                }
             }
             if (this._cursors.right.isDown) {
-                this._background.moveRight();
                 this.player.moveRight();
+                if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
+                    this._background.moveRight();
+                }
             }
             if (this._cursors.up.isDown) {
-                this._background.moveUp();
                 this.player.moveUp();
+                if (this.player._sprite.body.top == this.boundingRect.t) {
+                    this._background.moveUp();
+                }
             }
             if (this._cursors.down.isDown) {
-                this._background.moveDown();
                 this.player.moveDown();
+                if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
+                    this._background.moveDown();
+                }
             }
         };
         return Game;

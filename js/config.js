@@ -7,8 +7,8 @@ define(["require", "exports", "./game", "./settings"], function (require, export
     require([], function () {
         var config = {
             type: Phaser.AUTO,
-            width: settings_1.default.width,
-            height: settings_1.default.height,
+            width: settings_1.default.world.width,
+            height: settings_1.default.world.height,
             scene: {
                 preload: preload,
                 create: create,

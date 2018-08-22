@@ -1,14 +1,15 @@
 /// <reference path="lib/require.d.ts"/>
 /// <reference path="lib/phaser.d.ts"/>
-
+/// <reference path="lib/underscore.d.ts"/>
 
 import Game from "./game";
+import settings from './settings';
 
 require([], () => {
     let config = {
         type: Phaser.AUTO,
-        width: 800,     // TODO: hardcoded
-        height: 600,    // TODO: hardcoded
+        width: settings.width,
+        height: settings.height,
         scene: {
             preload: preload,
             create: create,

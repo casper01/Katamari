@@ -1,13 +1,14 @@
 /// <reference path="lib/require.d.ts"/>
 /// <reference path="lib/phaser.d.ts"/>
-define(["require", "exports", "./game"], function (require, exports, game_1) {
+/// <reference path="lib/underscore.d.ts"/>
+define(["require", "exports", "./game", "./settings"], function (require, exports, game_1, settings_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     require([], function () {
         var config = {
             type: Phaser.AUTO,
-            width: 800,
-            height: 600,
+            width: settings_1.default.width,
+            height: settings_1.default.height,
             scene: {
                 preload: preload,
                 create: create,

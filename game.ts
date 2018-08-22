@@ -14,7 +14,7 @@ class Game {
         this._scene = scene;
         this._cursors = this._scene.input.keyboard.createCursorKeys();
         this._scene.physics.world.setBounds(150, 100, 500, 400);
-        this._background = new Background(this._scene, 4); // TODO: hardcoded velocity
+        this._background = new Background(this._scene, settings.player.velocity);
         this.player = new Player(this._scene);
         this.enemies = [];
 
@@ -29,7 +29,7 @@ class Game {
         let v = this.getRandomVelocity(pos.x, pos.y);
         let size = Math.random() * (settings.maxSize - settings.minSize) + settings.minSize;
         let enemy = new Enemy(this._scene, pos, v, size);
-        this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, null, {
+        this._scene.physics.add.collider(<any>this.player.getSprite(), <any>enemy.getSprite(), this.playerHitEnemy, Function(), {
             game: this,
             player: this.player,
             enemy: enemy
@@ -123,7 +123,6 @@ class Game {
     }
 
     update() : void {
-        let self = <Phaser.Scene><any> this;
         this.player.update();
 
         if (this._cursors.left.isDown) {

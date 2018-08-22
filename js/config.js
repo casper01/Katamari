@@ -21,15 +21,15 @@ define(["require", "exports", "./game", "./settings"], function (require, export
         new Phaser.Game(config);
         var game;
         function preload() {
-            this.load.image('sky', 'assets/sky.jpg');
-            this.load.image('grass', 'assets/grass2.png'); // TODO: export to resources
-            this.load.spritesheet('player', 'assets/bird_sprite.png', {
-                frameWidth: 97,
-                frameHeight: 65
+            this.load.image(settings_1.default.imgs.sky.key, settings_1.default.imgs.sky.path);
+            this.load.image(settings_1.default.imgs.grass.key, settings_1.default.imgs.grass.path);
+            this.load.spritesheet(settings_1.default.imgs.player.key, settings_1.default.imgs.player.path, {
+                frameWidth: settings_1.default.imgs.player.frameWidth,
+                frameHeight: settings_1.default.imgs.player.frameHeight
             });
-            this.load.spritesheet('boom', 'assets/boom.png', {
-                frameWidth: 64,
-                frameHeight: 64
+            this.load.spritesheet(settings_1.default.imgs.boom.key, settings_1.default.imgs.boom.path, {
+                frameWidth: settings_1.default.imgs.boom.frameWidth,
+                frameHeight: settings_1.default.imgs.boom.frameHeight
             });
         }
         function create() {

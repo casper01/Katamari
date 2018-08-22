@@ -3,10 +3,10 @@ define(["require", "exports", "./settings"], function (require, exports, setting
     Object.defineProperty(exports, "__esModule", { value: true });
     var Player = /** @class */ (function () {
         function Player(scene) {
-            this.v = 200;
+            this.v = settings_1.default.player.velocity;
             this._size = 1;
             this._scene = scene;
-            this._sprite = this._scene.physics.add.sprite(400, 300, 'player'); // TODO: hardcoded
+            this._sprite = this._scene.physics.add.sprite(settings_1.default.player.startX, settings_1.default.player.startY, settings_1.default.imgs.player.key);
             this._sprite.play('playerFly', true, 0);
             this._sprite.setCollideWorldBounds(true);
             this._sprite.setScale(this._size, this._size);
@@ -35,7 +35,7 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             return this._size;
         };
         Player.prototype.grow = function () {
-            this._size += settings_1.default.playerGrowStep;
+            this._size += settings_1.default.player.growStep;
             this._sprite.setScale(this._size, this._size);
         };
         return Player;

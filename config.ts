@@ -23,15 +23,15 @@ require([], () => {
     let game: Game;
 
     function preload(this: Phaser.Scene) {
-        this.load.image('sky', 'assets/sky.jpg');
-        this.load.image('grass', 'assets/grass2.png');  // TODO: export to resources
-        this.load.spritesheet('player', 'assets/bird_sprite.png', { 
-            frameWidth: 97, 
-            frameHeight: 65
+        this.load.image(settings.imgs.sky.key, settings.imgs.sky.path);
+        this.load.image(settings.imgs.grass.key, settings.imgs.grass.path);
+        this.load.spritesheet(settings.imgs.player.key, settings.imgs.player.path, { 
+            frameWidth: settings.imgs.player.frameWidth, 
+            frameHeight: settings.imgs.player.frameHeight
         });
-        this.load.spritesheet('boom', 'assets/boom.png', { 
-            frameWidth: 64, 
-            frameHeight: 64
+        this.load.spritesheet(settings.imgs.boom.key, settings.imgs.boom.path, { 
+            frameWidth: settings.imgs.boom.frameWidth,
+            frameHeight: settings.imgs.boom.frameHeight
         });
     }
 

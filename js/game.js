@@ -6,7 +6,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             this._scene = scene;
             this._cursors = this._scene.input.keyboard.createCursorKeys();
             this._scene.physics.world.setBounds(150, 100, 500, 400);
-            this._background = new background_1.default(this._scene, 4); // TODO: hardcoded velocity
+            this._background = new background_1.default(this._scene, settings_1.default.player.velocity);
             this.player = new player_1.default(this._scene);
             this.enemies = [];
             for (var i = 0; i < 10; i++) {
@@ -18,7 +18,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             var v = this.getRandomVelocity(pos.x, pos.y);
             var size = Math.random() * (settings_1.default.maxSize - settings_1.default.minSize) + settings_1.default.minSize;
             var enemy = new enemy_1.default(this._scene, pos, v, size);
-            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, null, {
+            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, Function(), {
                 game: this,
                 player: this.player,
                 enemy: enemy

@@ -1,3 +1,5 @@
+import settings from "./settings"
+
 class Background {
     _moving_v: number;
     _sprite: any;
@@ -6,8 +8,8 @@ class Background {
     constructor(scene: any, moving_velocity: number) {
         this._moving_v = moving_velocity;
         this._scene = scene;
-        this._sprite = this._scene.add.tileSprite(400, 300, 800, 600, 'grass'); // TODO: moze init spritow w jakims oddzielnym miejscu
-
+        this._sprite = this._scene.add.tileSprite(settings.width/2, settings.height/2, 
+            settings.width, settings.height, settings.imgs.grass.key);
     }
 
     moveLeft() : void {

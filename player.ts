@@ -4,12 +4,12 @@ class Player {
     _scene : Phaser.Scene;
     _sprite: Phaser.Physics.Arcade.Sprite;
     _size: number;
-    v = 200;
+    v = settings.player.velocity;
 
     constructor(scene: Phaser.Scene) {
         this._size = 1;
         this._scene = scene;
-        this._sprite = this._scene.physics.add.sprite(400, 300, 'player'); // TODO: hardcoded
+        this._sprite = this._scene.physics.add.sprite(settings.player.startX, settings.player.startY, settings.imgs.player.key);
         this._sprite.play('playerFly', true, 0);
         this._sprite.setCollideWorldBounds(true);
         this._sprite.setScale(this._size, this._size);
@@ -46,7 +46,7 @@ class Player {
     }
 
     grow() : void {
-        this._size += settings.playerGrowStep;
+        this._size += settings.player.growStep;
         this._sprite.setScale(this._size, this._size);
     }
 }

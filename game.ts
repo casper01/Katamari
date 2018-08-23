@@ -131,9 +131,7 @@ class Game {
         return allObjects;
     }
 
-    update() : void {
-        this.player.update();
-
+    handleKeyPress() : void {
         if (this._cursors.left.isDown) {
             this.player.moveLeft();
             if (this.player._sprite.body.left == this.boundingRect.l) {
@@ -166,8 +164,15 @@ class Game {
                 });
             }
         }
+    }
+
+    update() : void {
+        this.player.update();
+        this.handleKeyPress();
         this.removeEnemiesOffScreen();
-        console.log(this.enemies.length);
+        while (this.enemies.length < settings.enemyCount) {
+            this.addEnemy();
+        }
     }
 
     removeEnemiesOffScreen() : void {

@@ -6,10 +6,11 @@ define(["require", "exports"], function (require, exports) {
         maxV: 200,
         minSize: 0.25,
         maxSize: 2,
+        enemyCount: 10,
         player: {
             startX: 400,
             startY: 300,
-            growStep: 0.5,
+            growStep: 0.1,
             velocity: 200,
             bgVelocity: 4
         },

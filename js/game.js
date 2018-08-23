@@ -113,8 +113,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             allObjects.push(this._background);
             return allObjects;
         };
-        Game.prototype.update = function () {
-            this.player.update();
+        Game.prototype.handleKeyPress = function () {
             if (this._cursors.left.isDown) {
                 this.player.moveLeft();
                 if (this.player._sprite.body.left == this.boundingRect.l) {
@@ -147,8 +146,14 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                     });
                 }
             }
+        };
+        Game.prototype.update = function () {
+            this.player.update();
+            this.handleKeyPress();
             this.removeEnemiesOffScreen();
-            console.log(this.enemies.length);
+            while (this.enemies.length < settings_1.default.enemyCount) {
+                this.addEnemy();
+            }
         };
         Game.prototype.removeEnemiesOffScreen = function () {
             var filteredEnemies = [];

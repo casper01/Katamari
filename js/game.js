@@ -15,9 +15,9 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             this._background = new background_1.default(this._scene, settings_1.default.player.bgVelocity);
             this.player = new player_1.default(this._scene);
             this.enemies = [];
-            // for(let i = 0; i < 10; i++) {
-            //     this.addEnemy();
-            // }
+            for (var i = 0; i < 5; i++) {
+                this.addEnemy();
+            }
         }
         Game.prototype.addEnemy = function () {
             var pos = this.getRandomSidePos();
@@ -107,32 +107,63 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 boom.play('birdDestroy', true, 0);
             }
         };
+        Game.prototype.getAllMovingObjects = function () {
+            var allObjects = [];
+            allObjects = allObjects.concat(this.enemies);
+            allObjects.push(this._background);
+            return allObjects;
+        };
         Game.prototype.update = function () {
             this.player.update();
             if (this._cursors.left.isDown) {
                 this.player.moveLeft();
                 if (this.player._sprite.body.left == this.boundingRect.l) {
-                    this._background.moveLeft();
+                    this.getAllMovingObjects().forEach(function (obj) {
+                        obj.moveRight();
+                    });
                 }
             }
             if (this._cursors.right.isDown) {
                 this.player.moveRight();
                 if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
-                    this._background.moveRight();
+                    this.getAllMovingObjects().forEach(function (obj) {
+                        obj.moveLeft();
+                    });
                 }
             }
             if (this._cursors.up.isDown) {
                 this.player.moveUp();
                 if (this.player._sprite.body.top == this.boundingRect.t) {
-                    this._background.moveUp();
+                    this.getAllMovingObjects().forEach(function (obj) {
+                        obj.moveDown();
+                    });
                 }
             }
             if (this._cursors.down.isDown) {
                 this.player.moveDown();
                 if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
-                    this._background.moveDown();
+                    this.getAllMovingObjects().forEach(function (obj) {
+                        obj.moveUp();
+                    });
                 }
             }
+            this.removeEnemiesOffScreen();
+            console.log(this.enemies.length);
+        };
+        Game.prototype.removeEnemiesOffScreen = function () {
+            var filteredEnemies = [];
+            this.enemies.forEach(function (enemy) {
+                if (enemy.getSprite().getBottomLeft().x > settings_1.default.world.width ||
+                    enemy.getSprite().getBottomLeft().y < 0 ||
+                    enemy.getSprite().getTopRight().x < 0 ||
+                    enemy.getSprite().getTopRight().y > settings_1.default.world.height) {
+                    enemy.kill();
+                }
+                else {
+                    filteredEnemies.push(enemy);
+                }
+            });
+            this.enemies = filteredEnemies;
         };
         return Game;
     }());

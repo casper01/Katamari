@@ -2,6 +2,7 @@ import Background from './background';
 import Player from './player';
 import Enemy from './enemy';
 import settings from './settings';
+import IMovable from './interfaces/IMovable';
 
 class Game {
     _scene: Phaser.Scene
@@ -24,9 +25,9 @@ class Game {
         this.player = new Player(this._scene);
         this.enemies = [];
 
-        // for(let i = 0; i < 10; i++) {
-        //     this.addEnemy();
-        // }
+        for(let i = 0; i < 5; i++) {
+            this.addEnemy();
+        }
 
     }
 
@@ -123,33 +124,66 @@ class Game {
         }
     }
 
+    private getAllMovingObjects() : IMovable[] {
+        let allObjects : IMovable[] = [];
+        allObjects = allObjects.concat(this.enemies);
+        allObjects.push(this._background);
+        return allObjects;
+    }
+
     update() : void {
         this.player.update();
 
         if (this._cursors.left.isDown) {
             this.player.moveLeft();
             if (this.player._sprite.body.left == this.boundingRect.l) {
-                this._background.moveLeft();
+                this.getAllMovingObjects().forEach(obj => {
+                    obj.moveRight();
+                });
             }
         }
         if (this._cursors.right.isDown) {
             this.player.moveRight();
             if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
-                this._background.moveRight();
+                this.getAllMovingObjects().forEach(obj => {
+                    obj.moveLeft();
+                });
             }
         }
         if (this._cursors.up.isDown) {
             this.player.moveUp();
             if (this.player._sprite.body.top == this.boundingRect.t) {
-                this._background.moveUp();
+                this.getAllMovingObjects().forEach(obj => {
+                    obj.moveDown();
+                });
             }
         }
         if (this._cursors.down.isDown) {
             this.player.moveDown();
             if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
-                this._background.moveDown();
+                this.getAllMovingObjects().forEach(obj => {
+                    obj.moveUp();
+                });
             }
         }
+        this.removeEnemiesOffScreen();
+        console.log(this.enemies.length);
+    }
+
+    removeEnemiesOffScreen() : void {
+        let filteredEnemies : Enemy[] = [];
+        this.enemies.forEach(enemy => {
+            if (enemy.getSprite().getBottomLeft().x > settings.world.width ||
+                enemy.getSprite().getBottomLeft().y < 0 ||
+                enemy.getSprite().getTopRight().x < 0 ||
+                enemy.getSprite().getTopRight().y > settings.world.height) {
+                    enemy.kill();
+                }
+            else {
+                filteredEnemies.push(enemy);
+            }
+        });
+        this.enemies = filteredEnemies;
     }
 }
 

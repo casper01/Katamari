@@ -1,8 +1,9 @@
 import settings from "./settings"
+import IMovable from "./interfaces/IMovable"
 
-class Background {
+class Background implements IMovable {
     _moving_v: number;
-    _sprite: any;
+    _sprite: Phaser.GameObjects.TileSprite;
     _scene: Phaser.Scene;
 
     constructor(scene: any, moving_velocity: number) {
@@ -13,19 +14,19 @@ class Background {
     }
 
     moveLeft() : void {
-        this._sprite.tilePositionX -= this._moving_v;
-    }
-
-    moveRight() : void {
         this._sprite.tilePositionX += this._moving_v;
     }
 
+    moveRight() : void {
+        this._sprite.tilePositionX -= this._moving_v;
+    }
+
     moveUp() : void {
-        this._sprite.tilePositionY -= this._moving_v;
+        this._sprite.tilePositionY += this._moving_v;
     }
 
     moveDown() : void {
-        this._sprite.tilePositionY += this._moving_v;
+        this._sprite.tilePositionY -= this._moving_v;
     }
 }
 

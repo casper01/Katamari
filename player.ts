@@ -1,6 +1,7 @@
 import settings from "./settings";
+import IMovable from "./interfaces/IMovable"
 
-class Player {
+class Player implements IMovable {
     _scene : Phaser.Scene;
     _sprite: Phaser.Physics.Arcade.Sprite;
     _size: number;

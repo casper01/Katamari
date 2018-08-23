@@ -181,7 +181,8 @@ class Game {
             if (enemy.getSprite().getBottomLeft().x > settings.world.width ||
                 enemy.getSprite().getBottomLeft().y < 0 ||
                 enemy.getSprite().getTopRight().x < 0 ||
-                enemy.getSprite().getTopRight().y > settings.world.height) {
+                enemy.getSprite().getTopRight().y > settings.world.height ||
+                (!enemy.getSprite().visible && !enemy.getSprite().body.enable)) {
                     enemy.kill();
                 }
             else {

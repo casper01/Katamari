@@ -2,7 +2,7 @@ const settings = {
     minV: 10,
     maxV: 200,
     minSize: 0.25,
-    maxSize: 2,
+    maxSize: 3,
     enemyCount: 10,
     player: {
         startX: 400,

@@ -161,7 +161,8 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 if (enemy.getSprite().getBottomLeft().x > settings_1.default.world.width ||
                     enemy.getSprite().getBottomLeft().y < 0 ||
                     enemy.getSprite().getTopRight().x < 0 ||
-                    enemy.getSprite().getTopRight().y > settings_1.default.world.height) {
+                    enemy.getSprite().getTopRight().y > settings_1.default.world.height ||
+                    (!enemy.getSprite().visible && !enemy.getSprite().body.enable)) {
                     enemy.kill();
                 }
                 else {

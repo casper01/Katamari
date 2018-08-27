@@ -12,6 +12,7 @@ class Game {
     player: Player;
     enemies: Enemy[];
     endScreen: EndScreen;
+    _keySpace: any;
     boundingRect = {
         l: settings.world.marginL,
         t: settings.world.marginT,
@@ -27,11 +28,7 @@ class Game {
         this.player = new Player(this._scene);
         this.enemies = [];
         this.endScreen = new EndScreen(this._scene);
-
-        for(let i = 0; i < 5; i++) {
-            this.addEnemy();
-        }
-
+        this._keySpace = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     addEnemy() {
@@ -120,7 +117,6 @@ class Game {
             boom.play('birdDestroy', true, 0);
         }
         else {
-            // TODO: player should lose life 
             p.getSprite().disableBody(true, true);
             let boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
             boom.play('birdDestroy', true, 0);
@@ -179,10 +175,16 @@ class Game {
             }
         }
         else {
-            this.endScreen.setActive();
+            this.endScreen.setVisibility(true);
             this.enemies.forEach(enemy => {
                 enemy.kill();
             });
+
+            if (this._keySpace.isDown) {
+                this.endScreen.setVisibility(false);
+                this.enemies = [];
+                this.player = new Player(this._scene);
+            }
         }
     }
 

@@ -16,9 +16,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             this.player = new player_1.default(this._scene);
             this.enemies = [];
             this.endScreen = new endScreen_1.default(this._scene);
-            for (var i = 0; i < 5; i++) {
-                this.addEnemy();
-            }
+            this._keySpace = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         }
         Game.prototype.addEnemy = function () {
             var size = Math.random() * (settings_1.default.maxSize - settings_1.default.minSize) + settings_1.default.minSize;
@@ -102,10 +100,9 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 boom.play('birdDestroy', true, 0);
             }
             else {
-                // TODO: player should lose life 
                 p.getSprite().disableBody(true, true);
-                var boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
-                boom.play('birdDestroy', true, 0);
+                // let boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
+                // boom.play('birdDestroy', true, 0);
             }
         };
         Game.prototype.getAllMovingObjects = function () {
@@ -158,10 +155,15 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 }
             }
             else {
-                this.endScreen.setActive();
+                this.endScreen.setVisibility(true);
                 this.enemies.forEach(function (enemy) {
                     enemy.kill();
                 });
+                if (this._keySpace.isDown) {
+                    this.endScreen.setVisibility(false);
+                    this.enemies = [];
+                    this.player = new player_1.default(this._scene);
+                }
             }
         };
         Game.prototype.removeEnemiesOffScreen = function () {

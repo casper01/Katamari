@@ -47,6 +47,10 @@ class Player implements IMovable {
     }
 
     grow() : void {
+        if (this._size > 2) {
+            return;
+        }
+
         this._size += settings.player.growStep;
         this._sprite.setScale(this._size, this._size);
     }
@@ -60,7 +64,7 @@ class Player implements IMovable {
     }
 
     isAlive() : boolean {
-        return this._sprite.visible || this._sprite.body.enable;
+        return this._sprite.visible && this._sprite.body.enable;
     }
 }
 

@@ -7,12 +7,17 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             this._sprite = this._scene.add.sprite(0, 0, settings_1.default.imgs.black.key);
             this._sprite.setScale(800, 600);
             this._text = this._scene.add.text(settings_1.default.endText.x, settings_1.default.endText.y, settings_1.default.endText.text, { font: settings_1.default.endText.conf });
-            this._sprite.alpha = 0;
-            this._text.alpha = 0;
+            this.setVisibility(false);
         }
-        EndScreen.prototype.setActive = function () {
-            this._sprite.alpha = 0.5;
-            this._text.alpha = 1;
+        EndScreen.prototype.setVisibility = function (mode) {
+            if (mode) {
+                this._sprite.alpha = 0.5;
+                this._text.alpha = 1;
+            }
+            else {
+                this._sprite.alpha = 0;
+                this._text.alpha = 0;
+            }
         };
         return EndScreen;
     }());

@@ -35,6 +35,9 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             return this._size;
         };
         Player.prototype.grow = function () {
+            if (this._size > 2) {
+                return;
+            }
             this._size += settings_1.default.player.growStep;
             this._sprite.setScale(this._size, this._size);
         };
@@ -45,7 +48,7 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             return this._sprite.height;
         };
         Player.prototype.isAlive = function () {
-            return this._sprite.visible || this._sprite.body.enable;
+            return this._sprite.visible && this._sprite.body.enable;
         };
         return Player;
     }());

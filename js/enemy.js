@@ -20,16 +20,16 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             return this._size;
         };
         Enemy.prototype.moveLeft = function () {
-            this._sprite.setPosition(this._sprite.body.center.x - settings_1.default.player.bgVelocity, this._sprite.body.center.y);
+            this._sprite.x -= settings_1.default.player.bgVelocity;
         };
         Enemy.prototype.moveRight = function () {
-            this._sprite.setPosition(this._sprite.body.center.x + settings_1.default.player.bgVelocity, this._sprite.body.center.y);
+            this._sprite.x += settings_1.default.player.bgVelocity;
         };
         Enemy.prototype.moveUp = function () {
-            this._sprite.setPosition(this._sprite.body.center.x, this._sprite.body.center.y - settings_1.default.player.bgVelocity);
+            this._sprite.y -= settings_1.default.player.bgVelocity;
         };
         Enemy.prototype.moveDown = function () {
-            this._sprite.setPosition(this._sprite.body.center.x, this._sprite.body.center.y + settings_1.default.player.bgVelocity);
+            this._sprite.y += settings_1.default.player.bgVelocity;
         };
         Enemy.prototype.kill = function () {
             this._sprite.destroy();

@@ -28,19 +28,19 @@ class Enemy implements IMovable {
     }
 
     moveLeft() : void {
-        this._sprite.setPosition(this._sprite.body.center.x - settings.player.bgVelocity, this._sprite.body.center.y);
+        this._sprite.x -= settings.player.bgVelocity;
     }
     
     moveRight() : void {
-        this._sprite.setPosition(this._sprite.body.center.x + settings.player.bgVelocity, this._sprite.body.center.y);
+        this._sprite.x += settings.player.bgVelocity;
     }
 
     moveUp() : void {
-        this._sprite.setPosition(this._sprite.body.center.x, this._sprite.body.center.y - settings.player.bgVelocity);
+        this._sprite.y -= settings.player.bgVelocity;
     }
-
+    
     moveDown() : void {
-        this._sprite.setPosition(this._sprite.body.center.x, this._sprite.body.center.y + settings.player.bgVelocity);
+        this._sprite.y += settings.player.bgVelocity;
     }
 
     kill() : void {

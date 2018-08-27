@@ -1,4 +1,4 @@
-define(["require", "exports", "./background", "./player", "./enemy", "./settings"], function (require, exports, background_1, player_1, enemy_1, settings_1) {
+define(["require", "exports", "./background", "./player", "./enemy", "./settings", "./endScreen"], function (require, exports, background_1, player_1, enemy_1, settings_1, endScreen_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Game = /** @class */ (function () {
@@ -15,6 +15,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             this._background = new background_1.default(this._scene, settings_1.default.player.bgVelocity);
             this.player = new player_1.default(this._scene);
             this.enemies = [];
+            this.endScreen = new endScreen_1.default(this._scene);
             for (var i = 0; i < 5; i++) {
                 this.addEnemy();
             }
@@ -148,11 +149,19 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
         };
         Game.prototype.update = function () {
-            this.player.update();
-            this.handleKeyPress();
-            this.removeEnemiesOffScreen();
-            while (this.enemies.length < settings_1.default.enemyCount) {
-                this.addEnemy();
+            if (this.player.isAlive()) {
+                this.player.update();
+                this.handleKeyPress();
+                this.removeEnemiesOffScreen();
+                while (this.enemies.length < settings_1.default.enemyCount) {
+                    this.addEnemy();
+                }
+            }
+            else {
+                this.endScreen.setActive();
+                this.enemies.forEach(function (enemy) {
+                    enemy.kill();
+                });
             }
         };
         Game.prototype.removeEnemiesOffScreen = function () {

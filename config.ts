@@ -25,6 +25,7 @@ require([], () => {
     function preload(this: Phaser.Scene) {
         this.load.image(settings.imgs.sky.key, settings.imgs.sky.path);
         this.load.image(settings.imgs.grass.key, settings.imgs.grass.path);
+        this.load.image(settings.imgs.black.key, settings.imgs.black.path);
         this.load.spritesheet(settings.imgs.player.key, settings.imgs.player.path, { 
             frameWidth: settings.imgs.player.frameWidth, 
             frameHeight: settings.imgs.player.frameHeight
@@ -43,13 +44,13 @@ require([], () => {
         this.anims.create({
             key: 'playerFly',
             frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
-            frameRate: 10,
+            frameRate: 15,
             repeat: -1
         });
         this.anims.create({
             key: 'enemyFly',
             frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 13 }),
-            frameRate: 20,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({

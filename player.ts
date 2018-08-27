@@ -58,6 +58,10 @@ class Player implements IMovable {
     getHeight() : number { 
         return this._sprite.height;
     }
+
+    isAlive() : boolean {
+        return this._sprite.visible || this._sprite.body.enable;
+    }
 }
 
 export default Player;

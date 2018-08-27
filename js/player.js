@@ -44,6 +44,9 @@ define(["require", "exports", "./settings"], function (require, exports, setting
         Player.prototype.getHeight = function () {
             return this._sprite.height;
         };
+        Player.prototype.isAlive = function () {
+            return this._sprite.visible || this._sprite.body.enable;
+        };
         return Player;
     }());
     exports.default = Player;

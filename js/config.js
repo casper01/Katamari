@@ -23,6 +23,7 @@ define(["require", "exports", "./game", "./settings"], function (require, export
         function preload() {
             this.load.image(settings_1.default.imgs.sky.key, settings_1.default.imgs.sky.path);
             this.load.image(settings_1.default.imgs.grass.key, settings_1.default.imgs.grass.path);
+            this.load.image(settings_1.default.imgs.black.key, settings_1.default.imgs.black.path);
             this.load.spritesheet(settings_1.default.imgs.player.key, settings_1.default.imgs.player.path, {
                 frameWidth: settings_1.default.imgs.player.frameWidth,
                 frameHeight: settings_1.default.imgs.player.frameHeight
@@ -40,13 +41,13 @@ define(["require", "exports", "./game", "./settings"], function (require, export
             this.anims.create({
                 key: 'playerFly',
                 frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
-                frameRate: 10,
+                frameRate: 15,
                 repeat: -1
             });
             this.anims.create({
                 key: 'enemyFly',
                 frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 13 }),
-                frameRate: 20,
+                frameRate: 10,
                 repeat: -1
             });
             this.anims.create({

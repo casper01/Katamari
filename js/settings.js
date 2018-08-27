@@ -22,7 +22,17 @@ define(["require", "exports"], function (require, exports) {
             width: 800,
             height: 600
         },
+        endText: {
+            x: 200,
+            y: 300,
+            text: "Press SPACE to play again",
+            conf: "32px Arial"
+        },
         imgs: {
+            black: {
+                key: "black",
+                path: "assets/black.png"
+            },
             sky: {
                 key: "sky",
                 path: "assets/sky.jpg" // TODO: na razie unused
@@ -45,6 +55,12 @@ define(["require", "exports"], function (require, exports) {
             },
             enemy: {
                 key: "enemy",
+                path: "assets/enemy2_sprite.png",
+                frameWidth: 97,
+                frameHeight: 65
+            },
+            enemy2: {
+                key: "enemy2",
                 path: "assets/enemy_sprite.png",
                 frameWidth: 81,
                 frameHeight: 75

@@ -3,6 +3,7 @@ import Player from './player';
 import Enemy from './enemy';
 import settings from './settings';
 import IMovable from './interfaces/IMovable';
+import EndScreen from './endScreen';
 
 class Game {
     _scene: Phaser.Scene
@@ -10,6 +11,7 @@ class Game {
     _background: Background;
     player: Player;
     enemies: Enemy[];
+    endScreen: EndScreen;
     boundingRect = {
         l: settings.world.marginL,
         t: settings.world.marginT,
@@ -24,6 +26,7 @@ class Game {
         this._background = new Background(this._scene, settings.player.bgVelocity);
         this.player = new Player(this._scene);
         this.enemies = [];
+        this.endScreen = new EndScreen(this._scene);
 
         for(let i = 0; i < 5; i++) {
             this.addEnemy();
@@ -167,11 +170,19 @@ class Game {
     }
 
     update() : void {
-        this.player.update();
-        this.handleKeyPress();
-        this.removeEnemiesOffScreen();
-        while (this.enemies.length < settings.enemyCount) {
-            this.addEnemy();
+        if (this.player.isAlive()) {
+            this.player.update();
+            this.handleKeyPress();
+            this.removeEnemiesOffScreen();
+            while (this.enemies.length < settings.enemyCount) {
+                this.addEnemy();
+            }
+        }
+        else {
+            this.endScreen.setActive();
+            this.enemies.forEach(enemy => {
+                enemy.kill();
+            });
         }
     }
 

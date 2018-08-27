@@ -31,12 +31,22 @@ define(["require", "exports", "./game", "./settings"], function (require, export
                 frameWidth: settings_1.default.imgs.boom.frameWidth,
                 frameHeight: settings_1.default.imgs.boom.frameHeight
             });
+            this.load.spritesheet(settings_1.default.imgs.enemy.key, settings_1.default.imgs.enemy.path, {
+                frameWidth: settings_1.default.imgs.enemy.frameWidth,
+                frameHeight: settings_1.default.imgs.enemy.frameHeight
+            });
         }
         function create() {
             this.anims.create({
                 key: 'playerFly',
                 frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
                 frameRate: 10,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'enemyFly',
+                frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 13 }),
+                frameRate: 20,
                 repeat: -1
             });
             this.anims.create({

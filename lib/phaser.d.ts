@@ -8271,12 +8271,12 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
@@ -11366,13 +11366,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -12382,13 +12382,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -14736,13 +14736,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -15624,13 +15624,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -16381,13 +16381,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -17526,13 +17526,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -18269,13 +18269,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -19016,13 +19016,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -26631,13 +26631,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -27600,6 +27600,10 @@ declare namespace Phaser {
                  * @param texture The key of the Texture this Game Object will use to render with, as stored in the Texture Manager.
                  * @param frame An optional frame from the Texture this Game Object is rendering with.
                  */
+
+                // TODO:KS own properties
+                body: Phaser.Physics.Body;
+
                 constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | integer);
 
                 /**
@@ -27866,13 +27870,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -31545,13 +31549,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -32666,13 +32670,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -34643,13 +34647,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -35724,13 +35728,13 @@ declare namespace Phaser {
                  * Gets the top-right corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
                  * @param output An object to store the values in. If not provided a new Vector2 will be created.
                  */
-                getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+                getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
                 /**
                  * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -44084,13 +44088,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.
@@ -46048,13 +46052,13 @@ declare namespace Phaser {
              * Gets the top-right corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getTopRight(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getTopRight(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-left corner coordinate of this Game Object, regardless of origin.
              * @param output An object to store the values in. If not provided a new Vector2 will be created.
              */
-            getBottomLeft(output?: Phaser.Math.Vector2 | object): Phaser.Math.Vector2 | object;
+            getBottomLeft(output?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * Gets the bottom-right corner coordinate of this Game Object, regardless of origin.

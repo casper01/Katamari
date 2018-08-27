@@ -33,6 +33,10 @@ require([], () => {
             frameWidth: settings.imgs.boom.frameWidth,
             frameHeight: settings.imgs.boom.frameHeight
         });
+        this.load.spritesheet(settings.imgs.enemy.key, settings.imgs.enemy.path, {
+            frameWidth: settings.imgs.enemy.frameWidth,
+            frameHeight: settings.imgs.enemy.frameHeight
+        });
     }
 
     function create(this: Phaser.Scene) {
@@ -40,6 +44,12 @@ require([], () => {
             key: 'playerFly',
             frames: this.anims.generateFrameNumbers('player', { start: 0, end: 8 }),
             frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'enemyFly',
+            frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 13 }),
+            frameRate: 20,
             repeat: -1
         });
         this.anims.create({

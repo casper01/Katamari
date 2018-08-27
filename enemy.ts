@@ -8,10 +8,15 @@ class Enemy implements IMovable {
 
     constructor(scene: Phaser.Scene, pos: any, v: any, size: number) {
         this._scene = scene;
-        this._sprite = this._scene.physics.add.sprite(pos.x, pos.y, 'player');
         this._size = size;
+        this._sprite = this._scene.physics.add.sprite(pos.x, pos.y, 'enemy');
+        this._sprite.play('enemyFly', true, 0);
         this._sprite.setVelocity(v.x, v.y);
         this._sprite.setScale(size, size);
+
+        if (v.x < 0) {
+            this._sprite.flipX = true;
+        }
     }
 
     getSprite() : Phaser.Physics.Arcade.Sprite {

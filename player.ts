@@ -50,6 +50,14 @@ class Player implements IMovable {
         this._size += settings.player.growStep;
         this._sprite.setScale(this._size, this._size);
     }
+
+    getWidth() : number { 
+        return this._sprite.width;
+    }
+
+    getHeight() : number { 
+        return this._sprite.height;
+    }
 }
 
 export default Player;

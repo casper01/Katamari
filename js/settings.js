@@ -6,7 +6,7 @@ define(["require", "exports"], function (require, exports) {
         maxV: 200,
         minSize: 0.25,
         maxSize: 3,
-        enemyCount: 10,
+        enemyCount: 6,
         player: {
             startX: 400,
             startY: 300,
@@ -15,10 +15,10 @@ define(["require", "exports"], function (require, exports) {
             bgVelocity: 4
         },
         world: {
-            marginL: 150,
-            marginR: 150,
-            marginT: 100,
-            marginB: 100,
+            marginL: 200,
+            marginR: 200,
+            marginT: 150,
+            marginB: 150,
             width: 800,
             height: 600
         },
@@ -42,6 +42,12 @@ define(["require", "exports"], function (require, exports) {
                 path: "assets/boom.png",
                 frameWidth: 64,
                 frameHeight: 64
+            },
+            enemy: {
+                key: "enemy",
+                path: "assets/enemy_sprite.png",
+                frameWidth: 81,
+                frameHeight: 75
             }
         }
     };

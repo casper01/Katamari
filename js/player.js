@@ -38,6 +38,12 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             this._size += settings_1.default.player.growStep;
             this._sprite.setScale(this._size, this._size);
         };
+        Player.prototype.getWidth = function () {
+            return this._sprite.width;
+        };
+        Player.prototype.getHeight = function () {
+            return this._sprite.height;
+        };
         return Player;
     }());
     exports.default = Player;

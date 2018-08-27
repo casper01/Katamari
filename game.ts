@@ -32,9 +32,9 @@ class Game {
     }
 
     addEnemy() {
-        let pos = this.getRandomSidePos();
-        let v = this.getRandomVelocity(pos.x, pos.y);
         let size = Math.random() * (settings.maxSize - settings.minSize) + settings.minSize;
+        let pos = this.getRandomSidePos(size);
+        let v = this.getRandomVelocity(pos.x, pos.y);
         let enemy = new Enemy(this._scene, pos, v, size);
         this._scene.physics.add.collider(<any>this.player.getSprite(), <any>enemy.getSprite(), this.playerHitEnemy, Function(), {
             game: this,
@@ -78,24 +78,24 @@ class Game {
         };
     }
 
-    getRandomSidePos() : any {
+    getRandomSidePos(size: number) : any {
         let side = _.random(3);
         let x, y;
         switch(side) {
         case 0:
-            x = 0;
+            x = -size * this.player.getWidth() / 2;
             y = _.random(settings.world.height);
             break;
         case 1:
-            x = settings.world.width;
+            x = settings.world.width + size * this.player.getHeight() / 2;
             y = _.random(settings.world.height);
             break;
         case 2:
-            y = 0;
+            y = -size * this.player.getHeight() / 2;
             x = _.random(settings.world.width);
             break;
         case 3:
-            y = settings.world.height;
+            y = settings.world.height + size * this.player.getHeight() / 2;
             x = _.random(settings.world.width);
             break;
         }

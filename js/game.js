@@ -20,9 +20,9 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
         }
         Game.prototype.addEnemy = function () {
-            var pos = this.getRandomSidePos();
-            var v = this.getRandomVelocity(pos.x, pos.y);
             var size = Math.random() * (settings_1.default.maxSize - settings_1.default.minSize) + settings_1.default.minSize;
+            var pos = this.getRandomSidePos(size);
+            var v = this.getRandomVelocity(pos.x, pos.y);
             var enemy = new enemy_1.default(this._scene, pos, v, size);
             this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, Function(), {
                 game: this,
@@ -64,24 +64,24 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 y: vy
             };
         };
-        Game.prototype.getRandomSidePos = function () {
+        Game.prototype.getRandomSidePos = function (size) {
             var side = _.random(3);
             var x, y;
             switch (side) {
                 case 0:
-                    x = 0;
+                    x = -size * this.player.getWidth() / 2;
                     y = _.random(settings_1.default.world.height);
                     break;
                 case 1:
-                    x = settings_1.default.world.width;
+                    x = settings_1.default.world.width + size * this.player.getHeight() / 2;
                     y = _.random(settings_1.default.world.height);
                     break;
                 case 2:
-                    y = 0;
+                    y = -size * this.player.getHeight() / 2;
                     x = _.random(settings_1.default.world.width);
                     break;
                 case 3:
-                    y = settings_1.default.world.height;
+                    y = settings_1.default.world.height + size * this.player.getHeight() / 2;
                     x = _.random(settings_1.default.world.width);
                     break;
             }

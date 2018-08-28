@@ -2,9 +2,9 @@ import settings from "./settings"
 import IMovable from "./interfaces/IMovable"
 
 class Background implements IMovable {
-    _moving_v: number;
-    _sprite: Phaser.GameObjects.TileSprite;
-    _scene: Phaser.Scene;
+    private _moving_v: number;
+    private _sprite: Phaser.GameObjects.TileSprite;
+    private _scene: Phaser.Scene;
 
     constructor(scene: any, moving_velocity: number) {
         this._moving_v = moving_velocity;
@@ -15,18 +15,30 @@ class Background implements IMovable {
 
     moveLeft() : void {
         this._sprite.tilePositionX += this._moving_v;
+        if (this._sprite.tilePositionX > settings.imgs.grass.width) {
+            this._sprite.tilePositionX -= settings.imgs.grass.width;
+        }
     }
 
     moveRight() : void {
         this._sprite.tilePositionX -= this._moving_v;
+        if (this._sprite.tilePositionX < 0) {
+            this._sprite.tilePositionX += settings.imgs.grass.width;
+        }
     }
 
     moveUp() : void {
         this._sprite.tilePositionY += this._moving_v;
+        if (this._sprite.tilePositionY > settings.imgs.grass.height) {
+            this._sprite.tilePositionY -= settings.imgs.grass.height;
+        }
     }
 
     moveDown() : void {
         this._sprite.tilePositionY -= this._moving_v;
+        if (this._sprite.tilePositionY < 0) {
+            this._sprite.tilePositionY += settings.imgs.grass.height;
+        }
     }
 }
 

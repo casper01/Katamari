@@ -6,13 +6,13 @@ import IMovable from './interfaces/IMovable';
 import EndScreen from './endScreen';
 
 class Game {
-    _scene: Phaser.Scene
-    _cursors: any;
-    _background: Background;
+    private _scene: Phaser.Scene
+    private _cursors: any;
+    private _background: Background;
+    private _keySpace: any;
+    private _endScreen: EndScreen;
     player: Player;
     enemies: Enemy[];
-    endScreen: EndScreen;
-    _keySpace: any;
     boundingRect = {
         l: settings.world.marginL,
         t: settings.world.marginT,
@@ -27,16 +27,16 @@ class Game {
         this._background = new Background(this._scene, settings.player.bgVelocity);
         this.player = new Player(this._scene);
         this.enemies = [];
-        this.endScreen = new EndScreen(this._scene);
+        this._endScreen = new EndScreen(this._scene);
         this._keySpace = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
-    addEnemy() {
+    private addEnemy() {
         let size = Math.random() * (settings.maxSize - settings.minSize) + settings.minSize;
         let pos = this.getRandomSidePos(size);
         let v = this.getRandomVelocity(pos.x, pos.y);
         let enemy = new Enemy(this._scene, pos, v, size);
-        this._scene.physics.add.collider(<any>this.player.getSprite(), <any>enemy.getSprite(), this.playerHitEnemy, Function(), {
+        this._scene.physics.add.collider(<any>this.player.getSprite(), <any>enemy.getSprite(), this.playerHitEnemyHandler, Function(), {
             game: this,
             player: this.player,
             enemy: enemy
@@ -44,7 +44,7 @@ class Game {
         this.enemies.push(enemy);
     }
 
-    getRandomVelocity(x: number, y: number) : any {
+    private getRandomVelocity(x: number, y: number) : any {
         let vx, vy, sign;
         if (x == 0) {
             sign = Math.random() < 0.5 ? -1 : 1;
@@ -78,7 +78,7 @@ class Game {
         };
     }
 
-    getRandomSidePos(size: number) : any {
+    private getRandomSidePos(size: number) : any {
         let side = _.random(3);
         let x, y;
         switch(side) {
@@ -105,7 +105,7 @@ class Game {
         };
     }
 
-    playerHitEnemy(this: any, player: Phaser.Physics.Arcade.Sprite, enemy: Phaser.Physics.Arcade.Sprite) : void {
+    private playerHitEnemyHandler(this: any, player: Phaser.Physics.Arcade.Sprite, enemy: Phaser.Physics.Arcade.Sprite) : void {
         let e = <Enemy>this.enemy;
         let p = <Player>this.player;
         let game = <Game>this.game;
@@ -130,10 +130,10 @@ class Game {
         return allObjects;
     }
 
-    handleKeyPress() : void {
+    private handleKeyPress() : void {
         if (this._cursors.left.isDown) {
             this.player.moveLeft();
-            if (this.player._sprite.body.left == this.boundingRect.l) {
+            if (this.player.getSprite().body.left == this.boundingRect.l) {
                 this.getAllMovingObjects().forEach(obj => {
                     obj.moveRight();
                 });
@@ -141,7 +141,7 @@ class Game {
         }
         if (this._cursors.right.isDown) {
             this.player.moveRight();
-            if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
+            if (this.player.getSprite().body.right == this.boundingRect.l + this.boundingRect.w) {
                 this.getAllMovingObjects().forEach(obj => {
                     obj.moveLeft();
                 });
@@ -149,7 +149,7 @@ class Game {
         }
         if (this._cursors.up.isDown) {
             this.player.moveUp();
-            if (this.player._sprite.body.top == this.boundingRect.t) {
+            if (this.player.getSprite().body.top == this.boundingRect.t) {
                 this.getAllMovingObjects().forEach(obj => {
                     obj.moveDown();
                 });
@@ -157,7 +157,7 @@ class Game {
         }
         if (this._cursors.down.isDown) {
             this.player.moveDown();
-            if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
+            if (this.player.getSprite().body.bottom == this.boundingRect.t + this.boundingRect.h) {
                 this.getAllMovingObjects().forEach(obj => {
                     obj.moveUp();
                 });
@@ -175,20 +175,20 @@ class Game {
             }
         }
         else {
-            this.endScreen.setVisibility(true);
+            this._endScreen.setVisibility(true);
             this.enemies.forEach(enemy => {
                 enemy.kill();
             });
+            this.enemies = [];
 
             if (this._keySpace.isDown) {
-                this.endScreen.setVisibility(false);
-                this.enemies = [];
+                this._endScreen.setVisibility(false);
                 this.player = new Player(this._scene);
             }
         }
     }
 
-    removeEnemiesOffScreen() : void {
+    private removeEnemiesOffScreen() : void {
         let filteredEnemies : Enemy[] = [];
         this.enemies.forEach(enemy => {
             if (enemy.getSprite().getBottomLeft().x > settings.world.width ||

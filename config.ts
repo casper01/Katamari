@@ -23,7 +23,6 @@ require([], () => {
     let game: Game;
 
     function preload(this: Phaser.Scene) {
-        this.load.image(settings.imgs.sky.key, settings.imgs.sky.path);
         this.load.image(settings.imgs.grass.key, settings.imgs.grass.path);
         this.load.image(settings.imgs.black.key, settings.imgs.black.path);
         this.load.spritesheet(settings.imgs.player.key, settings.imgs.player.path, { 

@@ -21,7 +21,6 @@ define(["require", "exports", "./game", "./settings"], function (require, export
         new Phaser.Game(config);
         var game;
         function preload() {
-            this.load.image(settings_1.default.imgs.sky.key, settings_1.default.imgs.sky.path);
             this.load.image(settings_1.default.imgs.grass.key, settings_1.default.imgs.grass.path);
             this.load.image(settings_1.default.imgs.black.key, settings_1.default.imgs.black.path);
             this.load.spritesheet(settings_1.default.imgs.player.key, settings_1.default.imgs.player.path, {

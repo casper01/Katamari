@@ -3,7 +3,7 @@ define(["require", "exports", "./settings"], function (require, exports, setting
     Object.defineProperty(exports, "__esModule", { value: true });
     var Player = /** @class */ (function () {
         function Player(scene) {
-            this.v = settings_1.default.player.velocity;
+            this._v = settings_1.default.player.velocity;
             this._size = 1;
             this._scene = scene;
             this._sprite = this._scene.physics.add.sprite(settings_1.default.player.startX, settings_1.default.player.startY, settings_1.default.imgs.player.key);
@@ -12,18 +12,18 @@ define(["require", "exports", "./settings"], function (require, exports, setting
             this._sprite.setScale(this._size, this._size);
         }
         Player.prototype.moveLeft = function () {
-            this._sprite.setVelocityX(-this.v);
+            this._sprite.setVelocityX(-this._v);
             this._sprite.flipX = true;
         };
         Player.prototype.moveRight = function () {
-            this._sprite.setVelocityX(this.v);
+            this._sprite.setVelocityX(this._v);
             this._sprite.flipX = false;
         };
         Player.prototype.moveUp = function () {
-            this._sprite.setVelocityY(-this.v);
+            this._sprite.setVelocityY(-this._v);
         };
         Player.prototype.moveDown = function () {
-            this._sprite.setVelocityY(this.v);
+            this._sprite.setVelocityY(this._v);
         };
         Player.prototype.update = function () {
             this._sprite.setVelocity(0, 0);

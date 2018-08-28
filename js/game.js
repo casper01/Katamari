@@ -15,7 +15,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             this._background = new background_1.default(this._scene, settings_1.default.player.bgVelocity);
             this.player = new player_1.default(this._scene);
             this.enemies = [];
-            this.endScreen = new endScreen_1.default(this._scene);
+            this._endScreen = new endScreen_1.default(this._scene);
             this._keySpace = this._scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         }
         Game.prototype.addEnemy = function () {
@@ -23,7 +23,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             var pos = this.getRandomSidePos(size);
             var v = this.getRandomVelocity(pos.x, pos.y);
             var enemy = new enemy_1.default(this._scene, pos, v, size);
-            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemy, Function(), {
+            this._scene.physics.add.collider(this.player.getSprite(), enemy.getSprite(), this.playerHitEnemyHandler, Function(), {
                 game: this,
                 player: this.player,
                 enemy: enemy
@@ -89,7 +89,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 y: y
             };
         };
-        Game.prototype.playerHitEnemy = function (player, enemy) {
+        Game.prototype.playerHitEnemyHandler = function (player, enemy) {
             var e = this.enemy;
             var p = this.player;
             var game = this.game;
@@ -101,8 +101,8 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
             else {
                 p.getSprite().disableBody(true, true);
-                // let boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
-                // boom.play('birdDestroy', true, 0);
+                var boom = game._scene.add.sprite(p.getSprite().x, p.getSprite().y, 'boom');
+                boom.play('birdDestroy', true, 0);
             }
         };
         Game.prototype.getAllMovingObjects = function () {
@@ -114,7 +114,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
         Game.prototype.handleKeyPress = function () {
             if (this._cursors.left.isDown) {
                 this.player.moveLeft();
-                if (this.player._sprite.body.left == this.boundingRect.l) {
+                if (this.player.getSprite().body.left == this.boundingRect.l) {
                     this.getAllMovingObjects().forEach(function (obj) {
                         obj.moveRight();
                     });
@@ -122,7 +122,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
             if (this._cursors.right.isDown) {
                 this.player.moveRight();
-                if (this.player._sprite.body.right == this.boundingRect.l + this.boundingRect.w) {
+                if (this.player.getSprite().body.right == this.boundingRect.l + this.boundingRect.w) {
                     this.getAllMovingObjects().forEach(function (obj) {
                         obj.moveLeft();
                     });
@@ -130,7 +130,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
             if (this._cursors.up.isDown) {
                 this.player.moveUp();
-                if (this.player._sprite.body.top == this.boundingRect.t) {
+                if (this.player.getSprite().body.top == this.boundingRect.t) {
                     this.getAllMovingObjects().forEach(function (obj) {
                         obj.moveDown();
                     });
@@ -138,7 +138,7 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
             }
             if (this._cursors.down.isDown) {
                 this.player.moveDown();
-                if (this.player._sprite.body.bottom == this.boundingRect.t + this.boundingRect.h) {
+                if (this.player.getSprite().body.bottom == this.boundingRect.t + this.boundingRect.h) {
                     this.getAllMovingObjects().forEach(function (obj) {
                         obj.moveUp();
                     });
@@ -155,13 +155,13 @@ define(["require", "exports", "./background", "./player", "./enemy", "./settings
                 }
             }
             else {
-                this.endScreen.setVisibility(true);
+                this._endScreen.setVisibility(true);
                 this.enemies.forEach(function (enemy) {
                     enemy.kill();
                 });
+                this.enemies = [];
                 if (this._keySpace.isDown) {
-                    this.endScreen.setVisibility(false);
-                    this.enemies = [];
+                    this._endScreen.setVisibility(false);
                     this.player = new player_1.default(this._scene);
                 }
             }

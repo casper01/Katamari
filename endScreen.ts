@@ -1,9 +1,9 @@
 import settings from "./settings";
 
 class EndScreen {
-    _scene: Phaser.Scene;
-    _sprite: Phaser.GameObjects.Sprite;
-    _text: Phaser.GameObjects.Text;
+    private _scene: Phaser.Scene;
+    private _sprite: Phaser.GameObjects.Sprite;
+    private _text: Phaser.GameObjects.Text;
 
     constructor(scene: Phaser.Scene) {
         this._scene = scene;

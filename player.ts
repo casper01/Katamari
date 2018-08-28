@@ -2,10 +2,10 @@ import settings from "./settings";
 import IMovable from "./interfaces/IMovable"
 
 class Player implements IMovable {
-    _scene : Phaser.Scene;
-    _sprite: Phaser.Physics.Arcade.Sprite;
-    _size: number;
-    v = settings.player.velocity;
+    private _scene : Phaser.Scene;
+    private _sprite: Phaser.Physics.Arcade.Sprite;
+    private _size: number;
+    private _v = settings.player.velocity;
 
     constructor(scene: Phaser.Scene) {
         this._size = 1;
@@ -17,21 +17,21 @@ class Player implements IMovable {
     }
 
     moveLeft() : void {
-        this._sprite.setVelocityX(-this.v);
+        this._sprite.setVelocityX(-this._v);
         this._sprite.flipX = true;
     }
 
     moveRight() : void {
-        this._sprite.setVelocityX(this.v);
+        this._sprite.setVelocityX(this._v);
         this._sprite.flipX = false;
     }
 
     moveUp() : void {
-        this._sprite.setVelocityY(-this.v);
+        this._sprite.setVelocityY(-this._v);
     }
 
     moveDown() : void {
-        this._sprite.setVelocityY(this.v);
+        this._sprite.setVelocityY(this._v);
     }
 
     update() : void {

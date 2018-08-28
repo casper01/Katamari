@@ -15,28 +15,28 @@ class Background implements IMovable {
 
     moveLeft() : void {
         this._sprite.tilePositionX += this._moving_v;
-        if (this._sprite.tilePositionX > settings.imgs.grass.width) {
+        if (this._sprite.tilePositionX >= settings.imgs.grass.width) {
             this._sprite.tilePositionX -= settings.imgs.grass.width;
         }
     }
 
     moveRight() : void {
         this._sprite.tilePositionX -= this._moving_v;
-        if (this._sprite.tilePositionX < 0) {
+        if (this._sprite.tilePositionX <= 0) {
             this._sprite.tilePositionX += settings.imgs.grass.width;
         }
     }
 
     moveUp() : void {
         this._sprite.tilePositionY += this._moving_v;
-        if (this._sprite.tilePositionY > settings.imgs.grass.height) {
+        if (this._sprite.tilePositionY >= settings.imgs.grass.height) {
             this._sprite.tilePositionY -= settings.imgs.grass.height;
         }
     }
 
     moveDown() : void {
         this._sprite.tilePositionY -= this._moving_v;
-        if (this._sprite.tilePositionY < 0) {
+        if (this._sprite.tilePositionY <= 0) {
             this._sprite.tilePositionY += settings.imgs.grass.height;
         }
     }
